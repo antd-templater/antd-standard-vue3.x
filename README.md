@@ -65,6 +65,14 @@
   │   ├── launch.json                      # VSCode 本地开发调试配置
   │   ├── settings.json                    # VSCode 项目开发风格/格式化配置 (ESLint、Prettier等)
   │
+  ├── cypress                              # Cypress 资源配置
+  │   ├── downloads                        # 下载 - 资源存储区
+  │   ├── fixtures                         # 定义 - 本地静态数据
+  │   ├── support                          # 储存 - 测试辅助资源
+  │   │   ├── commands.ts                  #  support -> 定义 自定义命令 - cy.[command]
+  │   │   ├── component-index.html         #  support -> 定义 组件测试 - 首页
+  │   │   ├── component.ts                 #  support -> 定义 组件测试 - 资源
+  │
   ├── dist                                 # 由 pnpm build 构建的本地工程
   ├── node_modules                         # 由 pnpm install 创建的本地依赖包
   │
@@ -98,6 +106,7 @@
   │   │   ├── Axios.d.ts                   # 预设定义 Axios 相关类型 (AxiosSorter ...)
   │   │   ├── Global.d.ts                  # 预设定义 JSX API / Window API 类型
   │   │   ├── ImportMeta.d.ts              # 预设定义 Vite Environment 类型
+  │   │   ├── Pinia.d.ts                   # 扩展定义 pinia-plugin-persist 类型
   │   │
   │   ├── layout                           # 布局组件库
   │   │   ├── components                   # 储存仅布局组件依赖的组件
@@ -181,7 +190,13 @@
   │   ├── router.ts                        # 初始化 Router 实例
   │
   ├── test                                 # 测试脚本
-  │   ├── utils.test.ts                    # 示例 (建议 xxx.test.ts 命名)
+  │   ├── cypress                          # cypress (基于浏览器运行的测试工具，主要用于测试依赖浏览器的逻辑)
+  │   │   ├── -Login.vue.cy.ts             # 范例: cypress 测试 Login Vue 组件
+  │   │   ├── tsconfig.json                # 定义: cypress TS 配置文件
+  │   │                                    #
+  │   ├── vitest                           # vitest (由 Vite 驱动的测试工具，主要用于测试不依赖浏览器的逻辑)
+  │   │   ├── -utils.test.ts               # 范例: vitest 测试 Utils Api
+  │   │   ├── tsconfig.json                # 定义: vitest TS 配置文件
   │
   ├── .cz-message.cjs                      # 指定 cz-message-helper 配置选项 (using by git cz)
   ├── .editorconfig                        # 指定项目的编码规范
@@ -198,19 +213,19 @@
   ├── .npmignore                           # 指定 npm publish 哪些文件被忽略 (比 .gitignore 优先级高)
   ├── .npmrc                               # 指定 npm 运行时的配置选项
   ├── .prettierignore                      # 指定 prettier 哪些文件不需要校验
-  ├── .prettierrc.js                       # 指定 prettier 格式的规则配置
+  ├── .prettierrc                          # 指定 prettier 格式的规则配置
   ├── .release-it.json                     # 指定 release-it 配置选项
   ├── .stylelintrc.js                      # 指定 stylelint 配置选项
   ├── auto-imports.d.ts                    # 是由 unplugin-auto-import/vite 插件自动生成
   ├── commitlint.config.js                 # 指定 @commitlint/cli、@commitlint/config-conventional 的配置选项
   ├── components.d.ts                      # 是由 unplugin-vue-components/vite 插件自动生成
+  ├── cypress.config.ts                    # Cypress 配置文件
   ├── index.html                           # 编译构建所需的 html 模版文件
   ├── LICENSE                              # 前端项目许可文件
   ├── package.json                         # 前端项目配置文件
   ├── pnpm-lock.yaml                       # pnpm 安装依赖包版本锁定文件
   ├── README.md                            # 前端项目介绍文件
   ├── tsconfig.json                        # typescript 配置文件
-  ├── tsconfig.node.json                   # typescript 子配置文件 (在 tsconfig.json 的 references 选项中进行引用)
   ├── vite.config.ts                       # Vite 配置文件 (dev server / run build)
   ├── volar.config.js                      # Volar 配置文件 (配合 volar-service-prettyhtml 插件)
 ```
