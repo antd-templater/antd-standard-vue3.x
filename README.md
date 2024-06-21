@@ -204,9 +204,7 @@
   ├── .env.development                     # 本地开发环境配置, 会覆盖 .env 文件同名属性配置
   ├── .env.production                      # 正式运行环境配置, 会覆盖 .env 文件同名属性配置
   ├── .env.test                            # 测试运行环境配置, 会覆盖 .env 文件同名属性配置
-  ├── .eslintignore                        # 指定 eslint 哪些文件不需要校验
   ├── .eslintrc-auto-import.json           # 是由 unplugin-auto-import/vite 插件自动生成 (在 eslint extends 中配置)
-  ├── .eslintrc.cjs                        # 指定 eslint 校验的规则配置
   ├── .gitattributes                       # 指定 git 使用的文件和路径的属性
   ├── .gitignore                           # 指定 git 哪些文件不需要添加到版本管理中
   ├── .lintstagedrc.js                     # 指定 lint-staged 配置选项
@@ -215,10 +213,10 @@
   ├── .prettierignore                      # 指定 prettier 哪些文件不需要校验
   ├── .prettierrc                          # 指定 prettier 格式的规则配置
   ├── .release-it.json                     # 指定 release-it 配置选项
-  ├── .stylelintrc.js                      # 指定 stylelint 配置选项
   ├── auto-imports.d.ts                    # 是由 unplugin-auto-import/vite 插件自动生成
   ├── commitlint.config.js                 # 指定 @commitlint/cli、@commitlint/config-conventional 的配置选项
   ├── components.d.ts                      # 是由 unplugin-vue-components/vite 插件自动生成
+  ├── eslint.config.mjs                    # 指定 eslint 校验的规则配置
   ├── cypress.config.ts                    # Cypress 配置文件
   ├── index.html                           # 编译构建所需的 html 模版文件
   ├── LICENSE                              # 前端项目许可文件
@@ -1256,6 +1254,7 @@ export default defineComponent({
 <summary>项目开发配置</summary>
 
 - 项目根目录下建立 .vscode/settings.json 文件，统一开发配置
+
   ```json
   {
     "[css]": {
@@ -1296,6 +1295,7 @@ export default defineComponent({
     "editor.formatOnPaste": true,
     "editor.detectIndentation": false,
     "editor.renderControlCharacters": true,
+    "eslint.useFlatConfig": true,
     "eslint.format.enable": true,
     "eslint.probe": ["javascript", "javascriptreact", "typescriptreact", "typescript", "html", "wxml", "vue"],
     "prettier.semi": false,
@@ -1310,16 +1310,7 @@ export default defineComponent({
     "prettier.htmlWhitespaceSensitivity": "ignore",
     "prettier.quoteProps": "consistent",
     "prettier.arrowParens": "avoid",
-    "prettier.trailingComma": "es5",
-    "volar.completion.preferredAttrNameCase": "camel",
-    "volar.completion.preferredTagNameCase": "kebab",
-    "volar.codeLens.references": false,
-    "volar.icon.splitEditors": false,
-    "stylusSupremacy.insertColons": true,
-    "stylusSupremacy.insertBraces": false,
-    "stylusSupremacy.insertSemicolons": false,
-    "stylusSupremacy.insertNewLineAroundImports": false,
-    "stylusSupremacy.insertNewLineAroundBlocks": false
+    "prettier.trailingComma": "es5"
   }
   ```
 
@@ -1334,9 +1325,9 @@ export default defineComponent({
     npx prettier --write --loglevel warn "src/**/*.vue"
   ```
 
-- 命令行 ESlint 一键校验并格式化，需 [.eslintignore](https://github.com/antd-templater/antd-template-vue3.x/blob/main/.eslintignore)、[.eslintrc.cjs](https://github.com/antd-templater/antd-template-vue3.x/blob/main/.eslintrc.cjs) 配置
+- 命令行 ESlint 一键校验并格式化，需 [eslint.config.mjs](https://github.com/antd-templater/antd-template-vue3.x/blob/main/eslint.config.mjs) 配置
   ```bash
-    npx eslint --fix --quiet src --ext .vue,.tsx,.jsx,.ts,.js
+    npx eslint --fix --quiet src/**/*{.vue,.tsx,.ts}
   ```
 
 </details>
